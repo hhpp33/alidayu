@@ -1,19 +1,20 @@
 <?php
-use Flc\Alidayu\Client;
+
 use Flc\Alidayu\App;
+use Flc\Alidayu\Client;
+use Flc\Alidayu\Requests\AlibabaAliqinFcFlowCharge;
+use Flc\Alidayu\Requests\AlibabaAliqinFcFlowChargeProvince;
+use Flc\Alidayu\Requests\AlibabaAliqinFcFlowGrade;
+use Flc\Alidayu\Requests\AlibabaAliqinFcFlowQuery;
+use Flc\Alidayu\Requests\AlibabaAliqinFcSmsNumQuery;
 use Flc\Alidayu\Requests\AlibabaAliqinFcSmsNumSend;
 use Flc\Alidayu\Requests\AlibabaAliqinFcTtsNumSinglecall;
-use Flc\Alidayu\Requests\AlibabaAliqinFcVoiceNumSinglecall;
-use Flc\Alidayu\Requests\AlibabaAliqinFcSmsNumQuery;
-use Flc\Alidayu\Requests\AlibabaAliqinFcFlowGrade;
 use Flc\Alidayu\Requests\AlibabaAliqinFcVoiceNumDoublecall;
-use Flc\Alidayu\Requests\AlibabaAliqinFcFlowCharge;
-use Flc\Alidayu\Requests\AlibabaAliqinFcFlowQuery;
-use Flc\Alidayu\Requests\AlibabaAliqinFcFlowChargeProvince;
+use Flc\Alidayu\Requests\AlibabaAliqinFcVoiceNumSinglecall;
 use Flc\Alidayu\Requests\IRequest;
 
 //require __DIR__ . '/../vendor/autoload.php';
-require __DIR__ . '/../autoload.php';
+require __DIR__.'/../autoload.php';
 
 // 配置信息
 $config = [
@@ -38,7 +39,7 @@ Client::configure($config);  // 只需定义一次
 $rs = Client::request('alibaba.aliqin.fc.sms.num.send', function (IRequest $req) {
     $req->setRecNum('13312311231')
         ->setSmsParam([
-            'number' => rand(100000, 999999)
+            'number' => rand(100000, 999999),
         ])
         ->setSmsFreeSignName('叶子坑')
         ->setSmsTemplateCode('SMS_15105357');
